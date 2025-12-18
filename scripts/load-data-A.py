@@ -12,5 +12,5 @@ df = pd.read_csv(input_csv)
 
 
 # Write to Flow output
-df.to_csv('/workflow/outputs/datasetA.csv', index=False)
+df.to_csv('/workflow/outputs/test/datasetA.csv', index=False)
 

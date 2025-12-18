@@ -6,7 +6,7 @@ from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask, GitRef, 
 from flytekitplugins.domino.artifact import Artifact, DATA, MODEL, REPORT
 
 # Set the name of this variable to the name of your Domino's standard environment
-environment_name="Domino Standard Environment Py3.10 R4.5"
+environment_name="Domino Standard Environment Py3.10 R4.5 - Latest Cloud"
 
 # Set the name of this variable to the name of one of your Domino's hardware tiers
 hardware_tier_name="Small"
@@ -38,7 +38,7 @@ def model_training(data_path_a: str, data_path_b: str):
         flyte_task_name='Load Data A',
         command='python /mnt/code/scripts/load-data-A.py',
         inputs=[Input(name='data_path', type=str, value=data_path_a)],
-        output_specs=[Output(name='datasetA', type=FlyteFile[TypeVar('csv')])],
+        output_specs=[Output(name='/test/datasetA', type=FlyteFile[TypeVar('csv')])],
         use_project_defaults_for_omitted=True,
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
