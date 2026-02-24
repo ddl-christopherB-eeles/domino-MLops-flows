@@ -15,7 +15,7 @@ environment_name="Domino Standard Environment Py3.10 R4.5"  # Change to the name
 environment_revision_id="694445374260132a9f000b4a"              # Change to the latest revision ID of your deployments Domino Standard Environment
 hardware_tier_name="Small"                                 # Change to the name of one of your Domino's hardware tiers
 GitRef_type="commitId"                                     
-GitRef_value="ae248799f3306c05b42dd4f685a87132556a953a"   # Change to the commitId of main Git repository 
+GitRef_value="e3003647b7b93c2145b891451f9cbd1ff5f8fc70"   # Change to the commitId of main Git repository 
 volume_size_gib=10
 dfs_repo_commit_id="5995b7bcbba406b88bc67ab419b02e61093fa31f"   # Change to the latest commit ID of the Artifacts file system in your project
 
@@ -46,7 +46,7 @@ def model_training(data_path_a: str, data_path_b: str):
 
     task1 = run_domino_job_task(
         flyte_task_name='Load Data A',
-        command='ls -lart /workflow && ls -lart /workflow/data && /mnt/code/scripts/setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/load-data-A.py',
+        command='ls -lart /workflow && ls -lart /workflow/data && ls -lart /mnt/code/scripts && bash /mnt/code/scripts/flow-setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/load-data-A.py',
         inputs=[Input(name='data_path', type=str, value=data_path_a)],
         output_specs=[Output(name='datasetA', type=FlyteFile[TypeVar('csv')])],
         environment_name=environment_name,
@@ -64,7 +64,7 @@ def model_training(data_path_a: str, data_path_b: str):
 
     task2 = run_domino_job_task(
         flyte_task_name='Load Data B',
-        command='ls -lart /workflow && ls -lart /workflow/data && /mnt/code/scripts/setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/load-data-B.py',
+        command='ls -lart /workflow && ls -lart /workflow/data && ls -lart /mnt/code/scripts && bash /mnt/code/scripts/flow-setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/load-data-B.py',
         inputs=[Input(name='data_path', type=str, value=data_path_b)],
         output_specs=[Output(name='datasetB', type=FlyteFile[TypeVar('csv')])],
         environment_name=environment_name,
@@ -82,7 +82,7 @@ def model_training(data_path_a: str, data_path_b: str):
 
     task3 = run_domino_job_task(
         flyte_task_name='Merge Data',
-        command='ls -lart /workflow && ls -lart /workflow/data && /mnt/code/scripts/setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/merge-data.py',
+        command='ls -lart /workflow && ls -lart /workflow/data && ls -lart /mnt/code/scripts && bash /mnt/code/scripts/flow-setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/merge-data.py',
         inputs=[
             Input(name='datasetA', type=FlyteFile[TypeVar('csv')], value=task1['datasetA']),
             Input(name='datasetB', type=FlyteFile[TypeVar('csv')], value=task2['datasetB'])],
@@ -104,7 +104,7 @@ def model_training(data_path_a: str, data_path_b: str):
 
     task4 = run_domino_job_task(
         flyte_task_name='Process Data',
-        command='ls -lart /workflow && ls -lart /workflow/data && /mnt/code/scripts/setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/process-data.py',
+        command='ls -lart /workflow && ls -lart /workflow/data && ls -lart /mnt/code/scripts && bash /mnt/code/scripts/flow-setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/process-data.py',
         inputs=[Input(name='merged_data', type=FlyteFile[TypeVar('thisisareallylongfiletype')], value=task3['merged_data'])],
         output_specs=[Output(name='processed_data', type=FlyteFile[TypeVar('csv')])],
         environment_name=environment_name,
@@ -122,7 +122,7 @@ def model_training(data_path_a: str, data_path_b: str):
 
     task5 = run_domino_job_task(
         flyte_task_name='Train Model',
-        command='ls -lart /workflow && ls -lart /workflow/data && /mnt/code/scripts/setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/train-model.py',
+        command='ls -lart /workflow && ls -lart /workflow/data && ls -lart /mnt/code/scripts && bash /mnt/code/scripts/flow-setup.sh && ls -lart /workflow && ls -lart /workflow/data && python /mnt/code/scripts/train-model.py',
         inputs=[
             Input(name='processed_data', type=FlyteFile[TypeVar('csv')], value=task4['processed_data']),
             Input(name='num_estimators', type=int, value=100)],
