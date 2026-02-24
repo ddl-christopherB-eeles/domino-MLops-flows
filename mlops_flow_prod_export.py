@@ -15,7 +15,7 @@ environment_name="Domino Standard Environment Py3.10 R4.5"  # Change to the name
 environment_revision_id="694445374260132a9f000b4a"              # Change to the latest revision ID of your deployments Domino Standard Environment
 hardware_tier_name="Small"                                 # Change to the name of one of your Domino's hardware tiers
 GitRef_type="commitId"                                     
-GitRef_value="e3003647b7b93c2145b891451f9cbd1ff5f8fc70"   # Change to the commitId of main Git repository 
+GitRef_value="691d958925e05ded8b098b0d68caf9a3164a3fe4"   # Change to the commitId of main Git repository 
 volume_size_gib=10
 dfs_repo_commit_id="5995b7bcbba406b88bc67ab419b02e61093fa31f"   # Change to the latest commit ID of the Artifacts file system in your project
 
