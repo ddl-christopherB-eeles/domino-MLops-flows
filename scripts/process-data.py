@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # Read data input
-named_input = "merged_data"
+named_input = "merged_data.csv"
 merged_data_path = "/workflow/inputs/{}".format(named_input)
 
 # Load data

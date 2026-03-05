@@ -19,7 +19,44 @@ processed_data_path = "/workflow/inputs/{}".format(named_input_1)
 named_input_2 = "num_estimators"
 num_estimator_value = Path(f"/workflow/inputs/{named_input_2}").read_text()
 
+def load_config_json():
+  import json
+  import os
+  config = None
+  try:
+    with open('/mnt/data-defaults/mlops-flows/config.json', 'r') as f:
+      config = json.load(f)
+      print("Config file loaded successfully from /mnt/data-defaults/mlops-flows/config.json")
+      print(config)
+      return config
+  except FileNotFoundError:
+    print("Config file not found at /mnt/data-defaults/mlops-flows/config.json")
 
+  if os.getenv('IS_WORKFLOW_JOB'):
+    print("Running in a Flows context")
+    try:
+        with open('/mnt/data/mlops-flows/config.json', 'r') as f:
+          config = json.load(f)
+          print("Config file loaded successfully from /mnt/data/mlops-flows/config.json")
+        print(config)
+        return config
+    except FileNotFoundError:
+        print("Config file not found at /mnt/data/mlops-flows/config.json")
+    return None
+  else:
+    print("Running in a non-Flows (workspace or job) context")
+    DEFAULT_SNAPSHOT_ID = 5
+    try:
+        with open(f'/mnt/data/snapshots/mlops-flows/{DEFAULT_SNAPSHOT_ID}/config.json', 'r') as f:
+          config = json.load(f)
+          print(f"Config file loaded successfully from /mnt/data/snapshots/mlops-flows/{DEFAULT_SNAPSHOT_ID}/config.json")
+        print(config)
+        return config
+    except FileNotFoundError:
+        print(f"Config file not found at /mnt/data/snapshots/mlops-flows/{DEFAULT_SNAPSHOT_ID}/config.json")
+    return None
+
+load_config_json()
 
 # Load data
 df = pd.read_csv(processed_data_path) 

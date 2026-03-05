@@ -2,10 +2,10 @@ import os
 import pandas as pd
 
 # Read inputs
-named_input_1 = "datasetA"
+named_input_1 = "datasetA.csv"
 datasetA_path = "/workflow/inputs/{}".format(named_input_1)
 
-named_input_2 = "datasetB"
+named_input_2 = "datasetB.csv"
 datasetB_path = "/workflow/inputs/{}".format(named_input_2)
 
 # Load data
