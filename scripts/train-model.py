@@ -59,7 +59,18 @@ def load_config_json():
 load_config_json()
 
 # Load data
-df = pd.read_csv(processed_data_path) 
+try:
+    df = pd.read_csv(processed_data_path)
+except FileNotFoundError:
+    print(f"processed_data.csv not found at {processed_data_path}")
+
+if df is None:
+    try:
+        named_input_1 = "processed_data"
+        processed_data_path = "/workflow/inputs/{}.csv".format(named_input_1)
+        df = pd.read_csv(processed_data_path)
+    except FileNotFoundError:
+        print(f"processed_data.csv not found at {processed_data_path}")
 
 
 # Separate features and labels
