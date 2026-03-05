@@ -59,6 +59,7 @@ def load_config_json():
 load_config_json()
 
 # Load data
+df = None
 try:
     df = pd.read_csv(processed_data_path)
 except FileNotFoundError:
