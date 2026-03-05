@@ -32,8 +32,8 @@ def load_config_json():
   except FileNotFoundError:
     print("Config file not found at /mnt/data-defaults/mlops-flows/config.json")
 
-  if os.getenv('IS_WORKFLOW_JOB'):
-    print("Running in a Flows context")
+  if os.getenv('DOMINO_IS_WORKFLOW_JOB') == "true":
+    print(f"Running in a Flows context, DOMINO_IS_WORKFLOW_JOB: {os.getenv('DOMINO_IS_WORKFLOW_JOB')}")
     try:
         with open('/mnt/data/mlops-flows/config.json', 'r') as f:
           config = json.load(f)
@@ -44,7 +44,7 @@ def load_config_json():
         print("Config file not found at /mnt/data/mlops-flows/config.json")
     return None
   else:
-    print("Running in a non-Flows (workspace or job) context")
+    print(f"Running in a non-Flows (workspace or job) context, DOMINO_IS_WORKFLOW_JOB: {os.getenv('DOMINO_IS_WORKFLOW_JOB')}")
     DEFAULT_SNAPSHOT_ID = 5
     try:
         with open(f'/mnt/data/snapshots/mlops-flows/{DEFAULT_SNAPSHOT_ID}/config.json', 'r') as f:

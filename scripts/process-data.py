@@ -17,5 +17,6 @@ print(df)
 
 # Write output
 df.to_csv('/workflow/outputs/processed_data.csv', index=False)
+df.to_csv('/workflow/outputs/processed_data', index=False)
 
 
