@@ -4,7 +4,7 @@ import typing
 from flytekit.types.file import FileExt
 from flytekit.types.file.file import FlyteFile, noop
 
-# hash: 10546178329d
+# hash: 10546178329e
 
 class DominoFile(FlyteFile):
     """Thin wrapper on FlyteFile that automatically sets ``file_extension``
