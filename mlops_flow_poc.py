@@ -4,7 +4,7 @@ from typing import TypeVar, NamedTuple
 from flytekitplugins.domino.helpers import Input, Output, run_domino_job_task
 from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask, GitRef, EnvironmentRevisionSpecification, EnvironmentRevisionType, DatasetSnapshot
 from flytekitplugins.domino.artifact import Artifact, DATA, MODEL, REPORT
-
+from domino_file import DominoFile
 
 # As this is considered a PROD Flow definition, we do not the use_project_defaults_for_omitted parameter
 # and explictly set every required parameter in the task defintion to ensure reproducability.
@@ -14,10 +14,10 @@ environment_name="Domino Standard Environment Py3.10 R4.5"  # Change to the name
 environment_revision_id="694445374260132a9f000b4a"              # Change to the latest revision ID of your deployments Domino Standard Environment
 hardware_tier_name="Small"                                # Change to the name of one of your Domino's hardware tiers
 GitRef_type="commitId"                                     
-GitRef_value="2d20ea7ba05b7a1ded5c2c93ad9c3a696e067159"   # Change to the commitId of main Git repository 
+GitRef_value="61a700e46218028cfafb800cd88aa42ba0ff12c9"   # Change to the commitId of main Git repository 
 volume_size_gib=10
 dfs_repo_commit_id="5995b7bcbba406b88bc67ab419b02e61093fa31f"   # Change to the latest commit ID of the Artifacts file system in your project
-
+# hash: 801830ca018093
 
 # Set if you want caching on or off for all your tasks.
 cache=True
@@ -118,7 +118,7 @@ def model_training(data_path_a: str, data_path_b: str):
 
     task5 = run_domino_job_task(
         flyte_task_name='Train Model',
-        command='python /mnt/code/scripts/train-model.py',
+        command='ls -lart /workflow/inputs && python /mnt/code/scripts/train-model.py',
         inputs=[
             Input(name='processed_data', type=FlyteFile[TypeVar('csv')], value=task4['processed_data']),
             Input(name='num_estimators', type=int, value=100)],
