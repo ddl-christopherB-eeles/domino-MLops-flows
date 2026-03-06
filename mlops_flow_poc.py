@@ -14,10 +14,9 @@ environment_name="Domino Standard Environment Py3.10 R4.5"  # Change to the name
 environment_revision_id="694445374260132a9f000b4a"              # Change to the latest revision ID of your deployments Domino Standard Environment
 hardware_tier_name="Small"                                # Change to the name of one of your Domino's hardware tiers
 GitRef_type="commitId"                                     
-GitRef_value="61a700e46218028cfafb800cd88aa42ba0ff12c9"   # Change to the commitId of main Git repository 
+GitRef_value="ff710b4c502c7b4b72a09923973176dcb4795319"   # Change to the commitId of main Git repository 
 volume_size_gib=10
 dfs_repo_commit_id="5995b7bcbba406b88bc67ab419b02e61093fa31f"   # Change to the latest commit ID of the Artifacts file system in your project
-# hash: 801830ca018093
 
 # Set if you want caching on or off for all your tasks.
 cache=True
