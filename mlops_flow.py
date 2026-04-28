@@ -14,6 +14,10 @@ hardware_tier_name="Small"
 # Set if you want caching on or off. 
 cache=True
 
+# Pin the user-facing Git ref to branch/main; the Domino API should resolve this
+# to a concrete commit SHA during pyflyte submission.
+main_repo_git_ref=GitRef(Type="branches", Value="main")
+
 # This calls the Artifact library, to create two named Flow Artifacts that we can label our merged data and model files as. 
 DataArtifact = Artifact("Merged Data", DATA)
 ModelArtifact = Artifact("Random Forest Model", MODEL)
@@ -40,6 +44,7 @@ def model_training(data_path_a: str, data_path_b: str):
         inputs=[Input(name='data_path', type=str, value=data_path_a)],
         output_specs=[Output(name='datasetA', type=FlyteFile[TypeVar('csv')])],
         use_project_defaults_for_omitted=True,
+        main_git_repo_ref=main_repo_git_ref,
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
@@ -52,6 +57,7 @@ def model_training(data_path_a: str, data_path_b: str):
         inputs=[Input(name='data_path', type=str, value=data_path_b)],
         output_specs=[Output(name='datasetB', type=FlyteFile[TypeVar('csv')])],
         use_project_defaults_for_omitted=True,
+        main_git_repo_ref=main_repo_git_ref,
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
@@ -66,6 +72,7 @@ def model_training(data_path_a: str, data_path_b: str):
             Input(name='datasetB', type=FlyteFile[TypeVar('csv')], value=task2['datasetB'])],
         output_specs=[Output(name='merged_data', type=DataArtifact.File(name="merged_data.csv"))],
         use_project_defaults_for_omitted=True,
+        main_git_repo_ref=main_repo_git_ref,
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
@@ -78,6 +85,7 @@ def model_training(data_path_a: str, data_path_b: str):
         inputs=[Input(name='merged_data', type=FlyteFile[TypeVar('csv')], value=task3['merged_data'])],
         output_specs=[Output(name='processed_data', type=FlyteFile[TypeVar('csv')])],
         use_project_defaults_for_omitted=True,
+        main_git_repo_ref=main_repo_git_ref,
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
@@ -92,6 +100,7 @@ def model_training(data_path_a: str, data_path_b: str):
             Input(name='num_estimators', type=int, value=100)],
         output_specs=[Output(name='model', type=ModelArtifact.File(name="model.pkl"))],
         use_project_defaults_for_omitted=True,
+        main_git_repo_ref=main_repo_git_ref,
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
