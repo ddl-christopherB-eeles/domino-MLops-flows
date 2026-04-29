@@ -48,7 +48,7 @@ def model_training(data_path_a: str, data_path_b: str):
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
-        cache_version="1.0"
+        cache_version="1.1"
     )
 
     task2 = run_domino_job_task(
@@ -61,7 +61,7 @@ def model_training(data_path_a: str, data_path_b: str):
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
-        cache_version="1.0"
+        cache_version="1.1"
     )
 
     task3 = run_domino_job_task(
@@ -76,7 +76,7 @@ def model_training(data_path_a: str, data_path_b: str):
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
-        cache_version="1.0"
+        cache_version="1.1"
     )
 
     task4 = run_domino_job_task(
@@ -89,7 +89,7 @@ def model_training(data_path_a: str, data_path_b: str):
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
-        cache_version="1.0"
+        cache_version="1.1"
     )
 
     task5 = run_domino_job_task(
@@ -104,7 +104,7 @@ def model_training(data_path_a: str, data_path_b: str):
         environment_name=environment_name,
         hardware_tier_name=hardware_tier_name,
         cache=cache,
-        cache_version="1.0"
+        cache_version="1.1"
     )
 
     return 
