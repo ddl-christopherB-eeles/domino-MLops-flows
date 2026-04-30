@@ -63,7 +63,7 @@ def dom_76273_serialization_demo():
     dict_task = DominoJobTask(
         name="DOM-76273 Untyped Dict Input Task",
         domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
-        inputs={"metadata": Dict[str, Any]},
+        inputs={"metadata": dict},
         outputs={"result": str},
         use_latest=True,
     )
