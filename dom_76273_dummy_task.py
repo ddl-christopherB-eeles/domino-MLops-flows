@@ -4,7 +4,7 @@ metadata_path = Path("/workflow/inputs/metadata")
 result_path = Path("/workflow/outputs/result")
 
 # Read the declared input without assuming whether Flows encoded it as
-# msgpack or JSON/Struct. DOM-76273 is about that serialization boundary.
+# msgpack or JSON/Struct.
 metadata_bytes = metadata_path.read_bytes()
 print(f"Received metadata input with {len(metadata_bytes)} bytes")
 
