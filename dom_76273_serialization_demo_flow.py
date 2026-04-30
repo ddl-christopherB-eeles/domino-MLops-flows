@@ -47,7 +47,7 @@ def dom_76273_serialization_demo():
     """
     dataclass_task = DominoJobTask(
         name="DOM-76273 Dataclass Input Task",
-        domino_job_config=DominoJobConfig(Command="python /mnt/code/scripts/train-model.py"),
+        domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
         inputs={"metadata": ModelMetadata},
         outputs={"result": str},
         use_latest=True,
@@ -62,7 +62,7 @@ def dom_76273_serialization_demo():
 
     dict_task = DominoJobTask(
         name="DOM-76273 Untyped Dict Input Task",
-        domino_job_config=DominoJobConfig(Command="python /mnt/code/scripts/train-model.py"),
+        domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
         inputs={"metadata": Dict[str, Any]},
         outputs={"result": str},
         use_latest=True,
