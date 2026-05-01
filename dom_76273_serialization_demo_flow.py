@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, List
 
 from flytekit import workflow
-from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask
+from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask, GitRef
 
 # Random comment
 @dataclass
