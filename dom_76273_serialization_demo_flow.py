@@ -13,12 +13,12 @@ This flow demonstrates both paths in sequence:
 """
 
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import List
 
 from flytekit import workflow
 from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask, GitRef
 
-# Random comment
+
 @dataclass
 class ModelMetadata:
     """
@@ -30,9 +30,10 @@ class ModelMetadata:
     version: int
     tags: List[str]
 
-main_repo_git_ref=GitRef(Type="branches", Value="main")
 
-# Dummy comment
+main_repo_git_ref = GitRef(Type="branches", Value="main")
+
+
 @workflow
 def dom_76273_serialization_demo():
     """
@@ -49,10 +50,12 @@ def dom_76273_serialization_demo():
     """
     dataclass_task = DominoJobTask(
         name="DOM-76273 Dataclass Input Task",
-        domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
+        domino_job_config=DominoJobConfig(
+            Command="python dom_76273_dummy_task.py",
+            MainRepoGitRef=main_repo_git_ref,
+        ),
         inputs={"metadata": ModelMetadata},
         outputs={"result": str},
-        main_repo_git_ref=main_repo_git_ref,
         use_latest=True,
     )
     dataclass_task(
@@ -65,8 +68,10 @@ def dom_76273_serialization_demo():
 
     dict_task = DominoJobTask(
         name="DOM-76273 Untyped Dict Input Task",
-        domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
-        main_repo_git_ref=main_repo_git_ref,
+        domino_job_config=DominoJobConfig(
+            Command="python dom_76273_dummy_task.py",
+            MainRepoGitRef=main_repo_git_ref,
+        ),
         inputs={"metadata": dict},
         outputs={"result": str},
         use_latest=True,
