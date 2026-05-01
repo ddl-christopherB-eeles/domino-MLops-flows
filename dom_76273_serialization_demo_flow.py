@@ -30,7 +30,7 @@ class ModelMetadata:
     version: int
     tags: List[str]
 
-
+# Dummy comment
 @workflow
 def dom_76273_serialization_demo():
     """
