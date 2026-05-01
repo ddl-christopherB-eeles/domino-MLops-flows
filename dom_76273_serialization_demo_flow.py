@@ -30,6 +30,8 @@ class ModelMetadata:
     version: int
     tags: List[str]
 
+main_repo_git_ref=GitRef(Type="branches", Value="main")
+
 # Dummy comment
 @workflow
 def dom_76273_serialization_demo():
@@ -50,6 +52,7 @@ def dom_76273_serialization_demo():
         domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
         inputs={"metadata": ModelMetadata},
         outputs={"result": str},
+        main_repo_git_ref=main_repo_git_ref,
         use_latest=True,
     )
     dataclass_task(
@@ -63,6 +66,7 @@ def dom_76273_serialization_demo():
     dict_task = DominoJobTask(
         name="DOM-76273 Untyped Dict Input Task",
         domino_job_config=DominoJobConfig(Command="python dom_76273_dummy_task.py"),
+        main_repo_git_ref=main_repo_git_ref,
         inputs={"metadata": dict},
         outputs={"result": str},
         use_latest=True,
