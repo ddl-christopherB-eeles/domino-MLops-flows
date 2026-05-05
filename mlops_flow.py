@@ -4,7 +4,7 @@ from typing import TypeVar, NamedTuple
 from flytekitplugins.domino.helpers import Input, Output, run_domino_job_task
 from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask, GitRef, EnvironmentRevisionSpecification, EnvironmentRevisionType, DatasetSnapshot
 from flytekitplugins.domino.artifact import Artifact, DATA, MODEL, REPORT
-# Random comment to advance commti
+# Random comment to advance commit!
 
 # Set the name of this variable to the name of your Domino's standard environment
 environment_name="Domino Standard Environment Py3.10 R4.5"
