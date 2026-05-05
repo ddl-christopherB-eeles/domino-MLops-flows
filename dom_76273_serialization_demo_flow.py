@@ -11,7 +11,6 @@ This flow demonstrates both paths in sequence:
   1. Dataclass input task — exercises the buggy msgpack/Struct path
   2. Untyped dict input task — control path, unaffected by the bug
 
-Random comment
 """
 
 from dataclasses import dataclass
