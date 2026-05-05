@@ -48,6 +48,8 @@ def dom_76273_serialization_demo():
 
     Task 2 (dict): Dict inputs use the generic JSON/Struct path and render
       correctly regardless of the flag — the control.
+
+    Arbitrary change.
     """
     dataclass_task = DominoJobTask(
         name="DOM-76273 Dataclass Input Task",
