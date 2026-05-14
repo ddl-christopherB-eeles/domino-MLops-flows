@@ -13,6 +13,8 @@ This flow demonstrates both paths in sequence:
 
 # Run with:
 pyflyte run --remote dom_76273_serialization_demo_flow.py dom_76273_serialization_demo
+
+# No-op change
 """
 
 from dataclasses import dataclass
@@ -34,7 +36,7 @@ class ModelMetadata:
     tags: List[str]
 
 
-main_repo_git_ref = GitRef(Type="branches", Value="main")
+main_repo_git_ref = GitRef(Type="branches", Value="test-branch")
 
 
 @workflow
