@@ -11,6 +11,8 @@ This flow demonstrates both paths in sequence:
   1. Dataclass input task — exercises the buggy msgpack/Struct path
   2. Untyped dict input task — control path, unaffected by the bug
 
+# Run with:
+pyflyte run --remote dom_76273_serialization_demo_flow.py dom_76273_serialization_demo
 """
 
 from dataclasses import dataclass
